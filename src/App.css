@@ -1,3 +1,5 @@
+/* App.css */
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #d1d1d1;
@@ -64,19 +66,43 @@ textarea {
   min-height: 120px;
 }
 
+.gender-options,
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gender-options label,
+.gender-options input {
+  margin-right: 10px;
+}
+
 button {
   padding: 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
   color: rgb(0, 0, 0);
-  width: 100%;
+  width: auto; 
   box-sizing: border-box;
 }
 
 button:hover {
   background-color: #b9b9b9;
   border: none;
+}
+
+.button-group button {
+  margin-right: 10px; 
+}
+
+.button-submit {
+  color: rgb(255, 255, 255);
+  background-color: #509697;
+}
+
+.button-reset {
+  color: #56139d;
 }
