@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./App.css";
+import axios from "axios";
 
 function App() {
 
-  const [value, setValue] = useState({
+  const [values, setValues] = useState({
     firstname: '',
     lastname: '',
     email: '',
@@ -16,12 +17,17 @@ function App() {
   })
 
   const handleChanges = (e) => {
-    setValue ({ ...value, [e.target.name] : [e.target.value]})
+    setValues ({ ...values, [e.target.name] : [e.target.value]})
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(value)
+    axios.post('url', values)
+    console.log(values)
+  }
+
+  const ResetFun = () => {
+    setValues({firstname: '', lastname: '', email: ''})
   }
 
   return (
@@ -29,14 +35,14 @@ function App() {
       <h1>Form In React</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstname">First Name</label>
-        <input required type="text" placeholder="Enter First Name" name="firstname" 
+        <input value={values.firstname} required type="text" placeholder="Enter First Name" name="firstname" 
         onChange={(e) => handleChanges(e)} />
 
         <label htmlFor="lastname">Last Name</label>
-        <input required type="text" placeholder="Enter Last Name" name="lastname"  onChange={(e) => handleChanges(e)} />
+        <input value={values.lastname} required type="text" placeholder="Enter Last Name" name="lastname"  onChange={(e) => handleChanges(e)} />
 
         <label htmlFor="email">Email</label>
-        <input required type="email" placeholder="Enter Email" name="email"  onChange={(e) => handleChanges(e)} />
+        <input value={values.email} required type="email" placeholder="Enter Email" name="email"  onChange={(e) => handleChanges(e)} />
 
         <label htmlFor="contact">Contact</label>
         <input type="text" placeholder="Enter Phone #" name="contact"  onChange={(e) => handleChanges(e)} />
@@ -68,7 +74,7 @@ function App() {
         <textarea onChange={(e) => handleChanges(e)} name="about" id="about" cols='30' rows='5' placeholder="Enter description"></textarea>
 
         <div className="button-group">
-          <button className="button-reset" type="button">Reset</button>
+          <button onClick={ResetFun} className="button-reset" type="button">Reset</button>
           <button className="button-submit" type="submit">Submit</button>
         </div>
       </form>
